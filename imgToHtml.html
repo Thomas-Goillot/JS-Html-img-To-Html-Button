@@ -1,0 +1,54 @@
+<div class="" style="display: none;">
+  <!-- METTRE VOS IMAGES -->
+
+</div>
+<!-- NE PAS TOUCHER CE QU'IL Y A EN DESSOUS -->
+<div class="nodelete">
+  <a href="./">Retour</a>
+  <h1>Transforme une image avec un onclick en button avec les attributs associee</h1>
+  <p id="check"></p>
+  <label for="class">Class</label>
+  <input type="text" class="nottaken" id="class" placeholder="Class" onkeydown="imgToHtml()"/>
+  <label for="alt">Text</label>
+  <input type="text" class="nottaken" id="alt" placeholder="Alt" onkeydown="imgToHtml()" />
+  <input type="checkbox" class="nottaken" name="backslash" id="backslash" onchange="imgToHtml()" />
+  <label for="backslash">Ajouter "\" au bouton</label>
+  <input type="checkbox" class="nottaken" name="showinput" id="showinput" onchange="imgToHtml()" />
+  <label for="showinput">Display Input</label>
+  <a href="imgToHtml.html">Refresh</a>
+  <textarea
+  name=""
+  style="width: 98%; height: 40%; margin: 1em"
+  id="value"
+  placeholder="Value"
+  ></textarea>
+  <button type="button" onclick="start()">Start</button>
+  <textarea
+    name=""
+    style="width: 98%; height: 40%; margin: 1em"
+    id="res"
+    placeholder="Response"
+  ></textarea>
+  
+</div>
+<script src="js/imgTohtml.js"></script>
+<script>
+  imgToHtml();
+
+  function start(){
+    var res = imgToHtml(document.getElementById('value').value,true, "" , false);
+    var inputs = res['inputs'];
+    var buttons = res['buttons'];
+    
+    document.getElementById('res').value = "";
+    inputs.map(function(input){
+      document.getElementById('res').value += input + "\r\n";
+    });
+    buttons.map(function(button){
+      document.getElementById('res').value += button + "\r\n";
+    });
+
+    document.getElementById("check").innerHTML += res['numberOfImg']['generatedButtons'] + " / " + res['numberOfImg']['findedImages'];
+    
+  }
+</script>
